@@ -6,12 +6,12 @@
 /*   By: abarbaro <abarbaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 06:09:22 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/20 19:35:47 by abarbaro         ###   ########.fr       */
+/*   Updated: 2014/12/20 21:01:40 by abarbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
-#include "lem-in.h"
+#include "lemin.h"
 
 int		is_room(char *line)
 {
@@ -19,16 +19,16 @@ int		is_room(char *line)
 		line++;
 	if (*line != ' ')
 		return (0);
-	line ++;
+	line++;
 	if (*line == '-')
-		line ++;
+		line++;
 	while (*line && ft_isdigit(*line))
 		line++;
 	if (*line != ' ')
 		return (0);
-	line ++;
+	line++;
 	if (*line == '-')
-		line ++;
+		line++;
 	while (*line && ft_isdigit(*line))
 		line++;
 	if (*line != '\0')
@@ -100,34 +100,4 @@ int		is_command(char *line)
 	}
 	else
 		return (-1);
-}
-
-int		init(t_list **rooms, t_list **paths)
-{
-	int		room_flag;
-	int		read;
-	int		rooms_done;
-	char	*line;
-
-	rooms_done = 0;
-	while ((read = get_next_line(0, &line)))
-	{
-		if (read == -1)
-		{
-			ft_memdel((void **)&line);
-			return (-1);
-		}
-		else if (is_command(line) != -1)
-			room_flag = is_command(line);
-		else if (is_room(line) && !rooms_done)
-			add_room(rooms, line, room_flag);
-		else if (is_path(line))
-		{
-			rooms_done = 1;
-			add_path(paths, line);
-		}
-		else
-			break ;
-	}
-	return (0);
 }

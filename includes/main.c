@@ -6,14 +6,14 @@
 /*   By: abarbaro <abarbaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/20 20:03:32 by abarbaro         ###   ########.fr       */
+/*   Updated: 2014/12/20 21:03:56 by abarbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
-#include "lem-in.h"
+#include "lemin.h"
 
-int		get_ant_number()
+int		get_ant_number(void)
 {
 	char	*line;
 	int		ant_number;
@@ -31,6 +31,33 @@ int		get_ant_number()
 		return (-1);
 	ft_memdel((void **)&line);
 	return (ant_number);
+}
+
+int		init(t_list **rooms, t_list **paths)
+{
+	int		room_flag;
+	int		read;
+	int		rooms_done;
+	char	*line;
+
+	rooms_done = 0;
+	while ((read = get_next_line(0, &line)))
+	{
+		if (read == -1)
+		{
+			ft_memdel((void **)&line);
+			return (-1);
+		}
+		else if (is_command(line) != -1)
+			room_flag = is_command(line);
+		else if (is_room(line) && !rooms_done)
+			add_room(rooms, line, room_flag);
+		else if (is_path(line) && (rooms_done = 1))
+			add_path(paths, line);
+		else
+			break ;
+	}
+	return (0);
 }
 
 void	out_rooms(t_list *first)
@@ -77,23 +104,23 @@ void	out_tunnels(t_list *first)
 
 int		main(void)
 {
-	// t_ant		*ants;
 	t_list		*rooms;
 	t_list		*tunnels;
 	int			antnum;
+	//t_ant		*ants;
 
 	rooms = NULL;
 	tunnels = NULL;
 	antnum = get_ant_number();
-	init(&rooms, &tunnels);
 	if (!antnum)
-	{
 		ft_putstr("ERROR");
+	else
+	{
+		init(&rooms, &tunnels);
+		// ants = malloc(sizeof(t_ant) * antnum);
+		ft_printf("%d\n", antnum);
+		out_rooms(rooms);
+		out_tunnels(tunnels);
 	}
-	// ants = malloc(sizeof(t_ant) * antnum);
-	ft_printf("%d\n", antnum);
-	out_rooms(rooms);
-	out_tunnels(tunnels);
-
 	return (0);
 }
