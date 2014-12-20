@@ -6,10 +6,11 @@
 /*   By: abarbaro <abarbaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/20 21:03:56 by abarbaro         ###   ########.fr       */
+/*   Updated: 2014/12/20 21:14:17 by abarbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <libft.h>
 #include "lemin.h"
 
@@ -116,7 +117,9 @@ int		main(void)
 		ft_putstr("ERROR");
 	else
 	{
+printf("rooms : %p (in main)\n", rooms);
 		init(&rooms, &tunnels);
+printf("rooms : %p (in main)\n", rooms);
 		// ants = malloc(sizeof(t_ant) * antnum);
 		ft_printf("%d\n", antnum);
 		out_rooms(rooms);

@@ -6,7 +6,7 @@
 /*   By: abarbaro <abarbaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 06:09:22 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/20 21:01:40 by abarbaro         ###   ########.fr       */
+/*   Updated: 2014/12/20 21:17:35 by abarbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	add_room(t_list **list, char *line, int room_flag)
 	while (tmp != NULL)
 		tmp = tmp->next;
 	tmp = malloc(sizeof(t_list));
+	if (!*list)
+		*list = tmp;
 	tmp->next = NULL;
 	tmp->data = ft_memdup(&newroom, sizeof(t_room));
 }
