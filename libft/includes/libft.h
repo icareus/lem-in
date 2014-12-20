@@ -6,7 +6,7 @@
 /*   By: abarbaro <abarbaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/27 01:46:16 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/11/18 03:33:08 by abarbaro         ###   ########.fr       */
+/*   Updated: 2014/12/20 19:23:38 by abarbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void		*ft_memchr(const void *s, int c, size_t n);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 void		*ft_memcpy(void *s1, const void *s2, size_t n);
 void		ft_memdel(void **ap);
+void		*ft_memdup(void *src, int size);
 void		*ft_memmove(void *s1, const void *s2, size_t n);
 void		ft_memslide(void *src, size_t slen, size_t maxlen);
 void		*ft_memset(void *b, int c, size_t len);

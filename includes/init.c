@@ -6,9 +6,12 @@
 /*   By: abarbaro <abarbaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 06:09:22 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/20 17:14:52 by abarbaro         ###   ########.fr       */
+/*   Updated: 2014/12/20 19:35:47 by abarbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <libft.h>
+#include "lem-in.h"
 
 int		is_room(char *line)
 {
@@ -35,13 +38,13 @@ int		is_room(char *line)
 
 int		is_path(char *line)
 {
-	if (ft_strchr('-', line))
+	if (ft_strchr(line, '-'))
 		return (1);
 	else
 		return (0);
 }
 
-void	add_room(t_list **list, char *line)
+void	add_room(t_list **list, char *line, int room_flag)
 {
 	t_room		newroom;
 	t_list		*tmp;
@@ -50,6 +53,7 @@ void	add_room(t_list **list, char *line)
 	i = 0;
 	while (line[i] != ' ')
 		i++;
+	newroom.flag = room_flag;
 	newroom.name = ft_memdup(line, i);
 	while (line[i] == ' ')
 		i++;
@@ -64,7 +68,7 @@ void	add_room(t_list **list, char *line)
 		tmp = tmp->next;
 	tmp = malloc(sizeof(t_list));
 	tmp->next = NULL;
-	tmp->data = ft_memdup(newroom, sizeof(t_room));
+	tmp->data = ft_memdup(&newroom, sizeof(t_room));
 }
 
 void	add_path(t_list **list, char *line)
@@ -73,17 +77,17 @@ void	add_path(t_list **list, char *line)
 	t_path		newpath;
 	int			score_pos;
 
-	score_pos = (int)ft_strlchr('-');
+	score_pos = (int)ft_strlchr(line, '-');
 	newpath.door1 = ft_memdup(line, score_pos);
 	newpath.door2 = ft_strdup(line + score_pos);
 	tmp = *list;
 	while (tmp)
 		tmp = tmp->next;
 	tmp = malloc(sizeof(t_list));
-	tmp->data = ft_memdup(newpath, sizeof(t_path));
+	tmp->data = ft_memdup(&newpath, sizeof(t_path));
 }
 
-int		is_command(line)
+int		is_command(char *line)
 {
 	if (line[0] == '#' && line[1] == '#')
 	{
@@ -98,7 +102,7 @@ int		is_command(line)
 		return (-1);
 }
 
-void	init(t_list **rooms, t_list **paths)
+int		init(t_list **rooms, t_list **paths)
 {
 	int		room_flag;
 	int		read;
@@ -106,24 +110,24 @@ void	init(t_list **rooms, t_list **paths)
 	char	*line;
 
 	rooms_done = 0;
-	while (read = get_next_line(0, &line))
+	while ((read = get_next_line(0, &line)))
 	{
 		if (read == -1)
 		{
-			ft_memdel(&line);
+			ft_memdel((void **)&line);
 			return (-1);
 		}
 		else if (is_command(line) != -1)
 			room_flag = is_command(line);
 		else if (is_room(line) && !rooms_done)
-			add_room(rooms, is_room(line));
+			add_room(rooms, line, room_flag);
 		else if (is_path(line))
 		{
 			rooms_done = 1;
-			add_path(paths, is_path(line));
+			add_path(paths, line);
 		}
 		else
 			break ;
 	}
-	return (ant_number);
+	return (0);
 }

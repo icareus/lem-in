@@ -6,12 +6,12 @@
 /*   By: abarbaro <abarbaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 05:37:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/20 17:16:07 by abarbaro         ###   ########.fr       */
+/*   Updated: 2014/12/20 20:00:08 by abarbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEM-IM_H
-# define LEM-IM_H
+#ifndef LEM_IN_H
+# define LEM_IN_H
 
 # define STARTROOM 	0
 # define NORMAL 	1
@@ -26,16 +26,22 @@ typedef struct		s_list
 
 typedef struct		s_room
 {
-	char	*name;
-	int		x;
-	int		y;
+	char			*name;
+	int				x;
+	int				y;
+	int				flag;
 }					t_room;
 
 typedef struct		s_path
 {
-	char	*door1;
-	char	*door2;
+	char			*door1;
+	char			*door2;
 }					t_path;
+
+typedef struct		s_ant
+{
+	t_room			*current;
+}					t_ant;
 
 int					init(t_list **rooms, t_list **tunnels);
 
