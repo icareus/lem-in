@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abarbaro <abarbaro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/27 01:46:16 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/20 19:23:38 by abarbaro         ###   ########.fr       */
+/*   Updated: 2014/12/22 20:35:18 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+
+typedef struct		s_list
+{
+	void			*data;
+	struct s_list	*next;
+}					t_list;
 
 int			ft_atoi(const char *str);
 void		ft_anything(void);
@@ -76,6 +82,8 @@ int			ft_isdigit(int c);
 int			ft_isalnum(int c);
 int			ft_isascii(int c);
 int			ft_isprint(int c);
+t_list		*ft_lst_push(t_list *first, void *data);
+void		ft_lst_rec_free(t_list *first);
 int			ft_toupper(int c);
 int			ft_tolower(int c);
 char		*ft_strnew(size_t size);
