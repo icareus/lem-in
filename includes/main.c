@@ -6,7 +6,7 @@
 /*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 03:44:16 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/25 04:12:45 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ int		init(t_list **rooms, t_list **paths)
 		else if (is_command(line) != -1)
 			room_flag = is_command(line);
 		else if (is_room(line) && !rooms_done)
+		{
 			*rooms = ft_lst_push(*rooms, init_room(line, room_flag));
+			room_flag = NORMAL;
+		}
 		else if (is_path(line) && (rooms_done = 1))
 			*paths = ft_lst_push(*paths, init_path(line));
 		else
@@ -76,14 +79,15 @@ void	print_room(void *room)
 	free(tmp);
 }
 
-void	print_tunnel(void *tunnel)
+void	print_path(void *tunnel)
 {
-	t_path		*tmp;
+	t_path		*path;
+	static int i;
 
-	tmp = (t_path *)tunnel;
-	ft_printf("%s %s\n", tmp->door1, tmp->door2);
-	free(tmp->door1);
-	free(tmp->door2);
+	path = (t_path *)tunnel;
+	ft_printf("path %i :\n", i++/*, path->door1, path->door2*/);
+	// free(path->door1);
+	// free(path->door2);
 }
 
 int		main(void)
@@ -104,7 +108,7 @@ int		main(void)
 		// ants = malloc(sizeof(t_ant) * antnum);
 		ft_printf("%d\n", antnum);
 		ft_lst_foreach(rooms, print_room);
-		ft_lst_foreach(rooms, print_tunnel);
+		ft_lst_foreach(rooms, print_path);
 	}
 	return (0);
 }

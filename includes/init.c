@@ -6,7 +6,7 @@
 /*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 06:09:22 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 03:17:33 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/25 04:10:00 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,26 @@ t_room	*init_room(char *line, int room_flag)
 
 t_path	*init_path(char *line)
 {
-	t_path		newpath;
+	t_path		*newpath;
 	int			score_pos;
 
+	newpath = malloc(sizeof(t_path));
 	score_pos = (int)ft_strlchr(line, '-');
-	newpath.door1 = ft_memdup(line, score_pos);
-	newpath.door2 = ft_strdup(line + score_pos);
-	return(ft_memdup(&newpath, sizeof(t_path)));
+	newpath->door1 = ft_strdup("FUCK IT");
+	newpath->door2 = ft_strdup("FUCK IT");
+	// newpath->door1 = ft_strsub(line, 0, score_pos);
+	// newpath->door2 = ft_strdup(line + score_pos + 1);
+ft_printf("door1 : %s, door2 : %s\n", newpath->door1, newpath->door2);
+	return (newpath);
 }
 
 int		is_command(char *line)
 {
 	if (line[0] == '#' && line[1] == '#')
 	{
-		if (ft_strequ("##START", line))
+		if (ft_strequ("##start", line))
 			return (STARTROOM);
-		else if (ft_strequ("##END", line))
+		else if (ft_strequ("##end", line))
 			return (ENDROOM);
 		else
 			return (NORMAL);
