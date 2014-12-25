@@ -6,7 +6,7 @@
 /*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 05:37:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 04:17:14 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/25 04:54:34 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,5 @@ t_room				*init_room(char *line, int room_flag);
 int					is_command(char *line);
 int					is_path(char *line);
 int					is_room(char *line);
-void				print_path(void *tunnel);
 
 #endif

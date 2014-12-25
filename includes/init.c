@@ -6,7 +6,7 @@
 /*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 06:09:22 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 04:27:51 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/25 04:56:09 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_room	*init_room(char *line, int room_flag)
 	while (line[i] != ' ')
 		i++;
 	newroom->flag = room_flag;
-	newroom->name = ft_memdup(line, i);
+	newroom->name = ft_strsub(line, 0, i);
 	while (line[i] == ' ')
 		i++;
 	newroom->x = ft_atoi(line + i);
