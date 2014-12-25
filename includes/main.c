@@ -6,7 +6,7 @@
 /*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 04:54:09 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/25 05:23:37 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ int		main(void)
 	t_list		*rooms;
 	t_list		*paths;
 	int			antnum;
-	//t_ant		*ants;
 
 	rooms = NULL;
 	paths = NULL;
@@ -106,7 +105,6 @@ int		main(void)
 	else
 	{
 		init(&rooms, &paths);
-		// ants = malloc(sizeof(t_ant) * antnum);
 		ft_printf("%d\n", antnum);
 		ft_lst_foreach(rooms, print_room);
 		ft_lst_foreach(paths, print_path);
