@@ -6,7 +6,7 @@
 /*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 03:00:30 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/25 03:22:09 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		init(t_list **rooms, t_list **paths)
 		else if (is_room(line) && !rooms_done)
 			*rooms = ft_lst_push(*rooms, init_room(line, room_flag));
 		else if (is_path(line) && (rooms_done = 1))
-			add_path(paths, line);
+			*paths = ft_lst_push(*paths, init_path(line));
 		else
 			break ;
 	}
@@ -72,25 +72,14 @@ void	print_room(void *room)
 	free(tmp);
 }
 
-void	out_tunnels(t_list *first)
+void	print_tunnel(void *tunnel)
 {
-	t_list		*tmp;
-	t_path		*tmp_path;
+	t_path		*tmp;
 
-	tmp = first;
-	while (tmp)
-	{
-		tmp_path = (t_path *)tmp->data;
-		ft_printf("%s %s\n", tmp_path->door1, tmp_path->door2);
-		first = tmp;
-		tmp_path = (t_path *)tmp->data;
-		tmp = tmp->next;
-		free(tmp_path->door1);
-		free(tmp_path->door2);
-		free(first->data);
-		free(first);
-	}
-	return ;
+	tmp = (t_path *)tunnel;
+	ft_printf("%s %s\n", tmp->door1, tmp->door2);
+	free(tmp->door1);
+	free(tmp->door2);
 }
 
 int		main(void)
@@ -111,7 +100,7 @@ int		main(void)
 		// ants = malloc(sizeof(t_ant) * antnum);
 		ft_printf("%d\n", antnum);
 		ft_lst_foreach(rooms, print_room);
-		out_tunnels(tunnels);
+		ft_lst_foreach(rooms, print_tunnel);
 	}
 	return (0);
 }

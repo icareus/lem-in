@@ -6,7 +6,7 @@
 /*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 06:09:22 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 02:49:59 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/25 03:17:33 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,15 @@ t_room	*init_room(char *line, int room_flag)
 	return (newroom);
 }
 
-void	add_path(t_list **list, char *line)
+t_path	*init_path(char *line)
 {
-	t_list		*tmp;
 	t_path		newpath;
 	int			score_pos;
 
 	score_pos = (int)ft_strlchr(line, '-');
 	newpath.door1 = ft_memdup(line, score_pos);
 	newpath.door2 = ft_strdup(line + score_pos);
-	tmp = *list;
-	while (tmp)
-		tmp = tmp->next;
-	tmp = malloc(sizeof(t_list));
-	tmp->data = ft_memdup(&newpath, sizeof(t_path));
+	return(ft_memdup(&newpath, sizeof(t_path)));
 }
 
 int		is_command(char *line)

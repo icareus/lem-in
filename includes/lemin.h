@@ -6,7 +6,7 @@
 /*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 05:37:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 02:48:40 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/25 03:18:20 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct		s_ant
 	t_room			*current;
 }					t_ant;
 
-void				add_path(t_list **list, char *line);
+t_path				*init_path(char *line);
 t_room				*init_room(char *line, int room_flag);
 int					is_command(char *line);
 int					is_path(char *line);
