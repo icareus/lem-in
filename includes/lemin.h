@@ -6,7 +6,7 @@
 /*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 05:37:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 03:18:20 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/25 03:36:56 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,6 @@
 # define NORMAL 	1
 # define ENDROOM	2
 # define UNKNOWN	3
-
-typedef struct		s_list
-{
-	void			*data;
-	struct s_list	*next;
-}					t_list;
 
 typedef struct		s_room
 {

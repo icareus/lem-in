@@ -6,7 +6,7 @@
 /*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 03:22:09 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/25 03:44:16 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ void	print_room(void *room)
 	t_room		*tmp;
 
 	tmp = (t_room *)room;
+	if (tmp->flag == STARTROOM)
+		ft_printf("##START\n");
+	else if (tmp->flag == ENDROOM)
+		ft_printf("##END\n");
 	ft_printf("%s %d %d\n", tmp->name,
 							tmp->x, tmp->y);
 	free(tmp->name);
