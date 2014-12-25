@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abarbaro <abarbaro@student.42.fr>          +#+  +:+       +#+         #
+#    By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/30 05:29:40 by abarbaro          #+#    #+#              #
-#    Updated: 2014/12/20 05:35:10 by abarbaro         ###   ########.fr        #
+#    Updated: 2014/12/25 02:39:26 by lefebvre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 NAME = lem-in
 LIBDIR = ./libft/
 LIB = $(LIBDIR)libft.a

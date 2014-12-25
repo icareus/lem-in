@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abarbaro <abarbaro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 06:09:22 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/20 21:51:25 by abarbaro         ###   ########.fr       */
+/*   Updated: 2014/12/25 02:49:59 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,26 @@ int		is_path(char *line)
 		return (0);
 }
 
-void	add_room(t_list **list, char *line, int room_flag)
+t_room	*init_room(char *line, int room_flag)
 {
-	t_room		newroom;
-	t_list		*tmp;
+	t_room		*newroom;
 	int			i;
 
 	i = 0;
+	newroom = malloc(sizeof(t_room));
 	while (line[i] != ' ')
 		i++;
-	newroom.flag = room_flag;
-	newroom.name = ft_memdup(line, i);
+	newroom->flag = room_flag;
+	newroom->name = ft_memdup(line, i);
 	while (line[i] == ' ')
 		i++;
-	newroom.x = ft_atoi(line + i);
+	newroom->x = ft_atoi(line + i);
 	while (line[i] != ' ')
 		i++;
 	while (line[i] == ' ')
 		i++;
-	newroom.y = ft_atoi(line + i);
-	ICI -> FONCTION LIST PUSH MEMCPY NEWROOM
+	newroom->y = ft_atoi(line + i);
+	return (newroom);
 }
 
 void	add_path(t_list **list, char *line)

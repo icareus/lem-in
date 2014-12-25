@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abarbaro <abarbaro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/20 21:40:22 by abarbaro         ###   ########.fr       */
+/*   Updated: 2014/12/25 02:49:17 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		init(t_list **rooms, t_list **paths)
 		else if (is_command(line) != -1)
 			room_flag = is_command(line);
 		else if (is_room(line) && !rooms_done)
-			add_room(rooms, line, room_flag);
+			*rooms = ft_lst_push(*rooms, init_room(line, room_flag));
 		else if (is_path(line) && (rooms_done = 1))
 			add_path(paths, line);
 		else
