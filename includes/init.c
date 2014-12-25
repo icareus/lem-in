@@ -6,7 +6,7 @@
 /*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 06:09:22 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 04:10:00 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/25 04:24:19 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,15 @@ t_path	*init_path(char *line)
 	int			score_pos;
 
 	newpath = malloc(sizeof(t_path));
+	if (!newpath)
+		return (NULL);
 	score_pos = (int)ft_strlchr(line, '-');
 	newpath->door1 = ft_strdup("FUCK IT");
 	newpath->door2 = ft_strdup("FUCK IT");
+	print_path(newpath);
 	// newpath->door1 = ft_strsub(line, 0, score_pos);
 	// newpath->door2 = ft_strdup(line + score_pos + 1);
-ft_printf("door1 : %s, door2 : %s\n", newpath->door1, newpath->door2);
+// ft_printf("door1 : %s, door2 : %s\n", newpath->door1, newpath->door2);
 	return (newpath);
 }
 

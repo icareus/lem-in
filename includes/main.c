@@ -6,7 +6,7 @@
 /*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 04:12:45 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/25 04:17:56 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	print_path(void *tunnel)
 	static int i;
 
 	path = (t_path *)tunnel;
-	ft_printf("path %i :\n", i++/*, path->door1, path->door2*/);
+	ft_printf("path %i :\n%s-%s\n", i++, path->door1, path->door2);
 	// free(path->door1);
 	// free(path->door2);
 }
