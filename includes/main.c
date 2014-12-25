@@ -6,7 +6,7 @@
 /*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 04:17:56 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/25 04:28:27 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,9 @@ void	print_room(void *room)
 void	print_path(void *tunnel)
 {
 	t_path		*path;
-	static int i;
 
 	path = (t_path *)tunnel;
-	ft_printf("path %i :\n%s-%s\n", i++, path->door1, path->door2);
+	ft_printf("%s-%s\n", path->door1, path->door2);
 	// free(path->door1);
 	// free(path->door2);
 }
@@ -93,22 +92,22 @@ void	print_path(void *tunnel)
 int		main(void)
 {
 	t_list		*rooms;
-	t_list		*tunnels;
+	t_list		*paths;
 	int			antnum;
 	//t_ant		*ants;
 
 	rooms = NULL;
-	tunnels = NULL;
+	paths = NULL;
 	antnum = get_ant_number();
 	if (!antnum)
 		ft_putstr("ERROR");
 	else
 	{
-		init(&rooms, &tunnels);
+		init(&rooms, &paths);
 		// ants = malloc(sizeof(t_ant) * antnum);
 		ft_printf("%d\n", antnum);
 		ft_lst_foreach(rooms, print_room);
-		ft_lst_foreach(rooms, print_path);
+		ft_lst_foreach(paths, print_path);
 	}
 	return (0);
 }
