@@ -6,7 +6,7 @@
 /*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 02:49:17 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/25 03:00:30 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,25 +61,15 @@ int		init(t_list **rooms, t_list **paths)
 	return (0);
 }
 
-void	out_rooms(t_list *first)
+void	print_room(void *room)
 {
-	t_list		*tmp;
-	t_room		*tmp_room;
+	t_room		*tmp;
 
-	tmp = first;
-	while (tmp)
-	{
-		tmp_room = (t_room *)tmp->data;
-		ft_printf("%s %d %d\n", tmp_room->name,
-								tmp_room->x, tmp_room->y);
-		first = tmp;
-		tmp_room = (t_room *)tmp->data;
-		tmp = tmp->next;
-		free(tmp_room->name);
-		free(first->data);
-		free(first);
-	}
-	return ;
+	tmp = (t_room *)room;
+	ft_printf("%s %d %d\n", tmp->name,
+							tmp->x, tmp->y);
+	free(tmp->name);
+	free(tmp);
 }
 
 void	out_tunnels(t_list *first)
@@ -120,7 +110,7 @@ int		main(void)
 		init(&rooms, &tunnels);
 		// ants = malloc(sizeof(t_ant) * antnum);
 		ft_printf("%d\n", antnum);
-		out_rooms(rooms);
+		ft_lst_foreach(rooms, print_room);
 		out_tunnels(tunnels);
 	}
 	return (0);
