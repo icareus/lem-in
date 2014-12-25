@@ -6,7 +6,7 @@
 /*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 05:23:37 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/25 05:37:35 by lefebvre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ int		init(t_list **rooms, t_list **paths)
 	while ((read = get_next_line(0, &line)))
 	{
 		if (read == -1)
-		{
 			ft_memdel((void **)&line);
-			return (-1);
-		}
 		else if (is_command(line) != -1)
 			room_flag = is_command(line);
 		else if (is_room(line) && !rooms_done)
