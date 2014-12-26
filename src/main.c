@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abarbaro <abarbaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 05:43:08 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/25 05:43:08 by abarbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
-#include "lemin.h"
+#include <lemin.h>
 
 int		get_ant_number(void)
 {
@@ -24,39 +24,37 @@ int		get_ant_number(void)
 	if (read == -1)
 	{
 		ft_memdel((void **)&line);
-		return (-1);
+		return (0);
 	}
 	ant_number = atoi(line);
 	if (!ant_number)
-		return (-1);
+		return (0);
 	ft_memdel((void **)&line);
 	return (ant_number);
 }
 
 int		init(t_list **rooms, t_list **paths)
 {
-	int		room_flag;
-	int		read;
-	int		rooms_done;
-	char	*line;
+	t_init		initvars;
 
-	rooms_done = 0;
-	while ((read = get_next_line(0, &line)))
+	initvars.rooms_done = 0;
+	while ((initvars.read = get_next_line(0, &initvars.line)))
 	{
-		if (read == -1)
-			ft_memdel((void **)&line);
-		else if (is_command(line) != -1)
-			room_flag = is_command(line);
-		else if (is_room(line) && !rooms_done)
+		if (initvars.read == -1)
+			ft_memdel((void **)&initvars.line);
+		else if (is_command(initvars.line) != -1)
+			initvars.room_flag = is_command(initvars.line);
+		else if (is_room(initvars.line) && !initvars.rooms_done)
 		{
-			*rooms = ft_lst_push(*rooms, init_room(line, room_flag));
-			room_flag = NORMAL;
+			*rooms = ft_lst_push(*rooms, init_room(initvars.line,
+												initvars.room_flag));
+			initvars.room_flag = NORMAL;
 		}
-		else if (is_path(line) && (rooms_done = 1))
-			*paths = ft_lst_push(*paths, init_path(line));
-		else
-			break ;
+		else if (is_path(initvars.line) && (initvars.rooms_done = 1))
+			*paths = ft_lst_push(*paths, init_path(initvars.line));
+		free(initvars.line);
 	}
+	free(initvars.line);
 	return (0);
 }
 
@@ -66,9 +64,9 @@ void	print_room(void *room)
 
 	tmp = (t_room *)room;
 	if (tmp->flag == STARTROOM)
-		ft_printf("##START\n");
+		ft_printf("##start\n");
 	else if (tmp->flag == ENDROOM)
-		ft_printf("##END\n");
+		ft_printf("##end\n");
 	ft_printf("%s %d %d\n", tmp->name,
 							tmp->x, tmp->y);
 	free(tmp->name);

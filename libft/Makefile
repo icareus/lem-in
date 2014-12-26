@@ -54,7 +54,7 @@ clean:
 	@echo "Cleaning objects..."
 	rm -rf $(ODIR)
 	@$(WHT)
-	@echo "Cleaning done."
+	@echo "$(NAME) - Cleaning done."
 	@$(NOCOLOR)
 
 fclean: clean
@@ -62,6 +62,6 @@ fclean: clean
 	@echo "Deleting output..."
 	rm -f $(NAME)
 	@$(WHT)
-	@echo "Deletion done."
+	@echo "$(NAME) - Deletion done."
 	@$(NOCOLOR)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abarbaro <abarbaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 05:37:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 04:54:34 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/25 04:54:34 by abarbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 # define NORMAL 	1
 # define ENDROOM	2
 # define UNKNOWN	3
+
+typedef struct		s_init
+{
+	int				room_flag;
+	int				rooms_done;
+	char			*line;
+	int				read;
+}					t_init;
 
 typedef struct		s_room
 {
@@ -37,6 +45,7 @@ typedef struct		s_ant
 	t_room			*current;
 }					t_ant;
 
+t_room				*get_room_by_name(char *name, t_list *list);
 t_path				*init_path(char *line);
 t_room				*init_room(char *line, int room_flag);
 int					is_command(char *line);

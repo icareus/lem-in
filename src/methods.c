@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   methods.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarbaro <abarbaro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,13 +11,21 @@
 /* ************************************************************************** */
 
 #include <libft.h>
-#include "lemin.h"
+#include <lemin.h>
 
-int		valid_path(t_path *path, t_list *rooms)
+t_room		*get_room_by_name(char *name, t_list *list)
 {
-	if (get_room_by_name(path->door1, rooms)
-		&& get_room_by_name(path->door2, rooms))
-		return (1);
-	else
-		return (0);
+	t_room		*tmp;
+	int			done;
+
+	done = 0;
+	if (!list)
+		return (NULL);
+	while (list && !done)
+	{
+		tmp = (t_room *)list->data;
+		done = ft_strequ(name, tmp->name);
+		list = list->next;
+	}
+	return (done ? tmp : NULL);
 }

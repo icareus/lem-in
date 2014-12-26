@@ -15,7 +15,7 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = lem-in
 LIBDIR = ./libft/
 LIB = $(LIBDIR)libft.a
-SRCDIR = ./includes/
+SRCDIR = ./src/
 SRCFIL = $(shell ls includes | grep "\.c")
 SRC = $(addprefix $(SRCDIR),$(SRCFIL))
 ODIR = ./OBJECTS/
@@ -38,7 +38,7 @@ $(NAME): objects
 objects:
 	@$(BLU)
 	@echo "Making objects..."
-	@$(CC) $(CFLAGS) -c $(SRC) -I $(LIBDIR)includes
+	@$(CC) $(CFLAGS) -c $(SRC) -I ./includes -I $(LIBDIR)includes
 	@mkdir -p $(ODIR)
 	@mv $(SRCO) $(ODIR)
 	@$(WHT)
@@ -59,11 +59,12 @@ re: fclean all
 	@$(NOCOLOR)
 
 clean:
+	@make -C libft/ fclean
 	@$(BLU)
 	@echo "Cleaning objects..."
 	rm -rf $(ODIR)
 	@$(WHT)
-	@echo "Cleaning done."
+	@echo "$(NAME) - Cleaning done."
 	@$(NOCOLOR)
 
 fclean: clean
@@ -71,6 +72,6 @@ fclean: clean
 	@echo "Deleting output..."
 	rm -f $(NAME)
 	@$(WHT)
-	@echo "Deletion done."
+	@echo "$(NAME) - Deletion done."
 	@$(NOCOLOR)
 
