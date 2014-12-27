@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/27 13:04:49 by root             ###   ########.fr       */
+/*   Updated: 2014/12/27 16:29:54 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,22 @@ int		init(t_list **rooms, t_list **paths)
 	t_init		vars;
 
 	vars.rooms_done = 0;
+	vars.flag = NORMAL;
 	while ((vars.read = get_next_line(0, &vars.line)))
 	{
 		if (vars.read == -1)
 			ft_memdel((void **)&vars.line);
-		else
-		{
+		else if (is_command(vars.line))
 			vars.flag = vars.flag == NORMAL ? is_command(vars.line) : vars.flag;
-			if (is_room(vars.line) && !vars.rooms_done)
-			{
-				*rooms = ft_lst_push(*rooms, init_room(vars.line,
-													vars.flag));
-				vars.flag = NORMAL;
-			}
-			else if (is_path(vars.line) && (vars.rooms_done = 1))
-				*paths = ft_lst_push(*paths, init_path(vars.line));
+		else if (is_room(vars.line) && !vars.rooms_done)
+		{
+			*rooms = ft_lst_push(*rooms, init_room(vars.line, vars.flag));
+			vars.flag = NORMAL;
 		}
-		free(vars.line);
+		else if (is_path(vars.line, *rooms) && (vars.rooms_done = 1))
+			*paths = ft_lst_push(*paths, init_path(vars.line));
+		else
+			break ;
 	}
 	free(vars.line);
 	return (0);

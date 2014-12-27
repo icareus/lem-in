@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 06:09:22 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/27 13:02:33 by root             ###   ########.fr       */
+/*   Updated: 2014/12/27 16:20:56 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,17 @@
 
 int		is_command(char *line)
 {
-	if (ft_strequ("##start", line))
-		return (STARTROOM);
-	else if (ft_strequ("##end", line))
-		return (ENDROOM);
+	if (*line == '#')
+	{
+		if (ft_strequ("##start", line))
+			return (STARTROOM);
+		else if (ft_strequ("##end", line))
+			return (ENDROOM);
+		else
+			return (NORMAL);
+	}
 	else
-		return (NORMAL);
+		return (0);
 }
 
 int		is_room(char *line)
@@ -46,10 +51,28 @@ int		is_room(char *line)
 	return (1);
 }
 
-int		is_path(char *line)
+int		is_path(char *line, t_list *rooms)
 {
+	t_path		tmp;
+
 	if (ft_strchr(line, '-'))
-		return (1);
+	{
+		tmp.door1 = ft_strsub(line, 0, ft_strlchr(line, '-'));
+		tmp.door2 = ft_strdup(line + ft_strlchr(line, '-') + 1);
+		if ((get_room_by_name(tmp.door1, rooms)
+			&& get_room_by_name(tmp.door2, rooms)))
+		{
+			free(tmp.door1);
+			free(tmp.door2);
+			return (1);
+		}
+		else
+		{
+			free(tmp.door1);
+			free(tmp.door2);
+			return (0);
+		}
+	}
 	else
 		return (0);
 }
@@ -73,6 +96,7 @@ t_room	*init_room(char *line, int room_flag)
 	while (line[i] == ' ')
 		i++;
 	newroom->y = ft_atoi(line + i);
+	free(line);
 	return (newroom);
 }
 
@@ -87,5 +111,6 @@ t_path	*init_path(char *line)
 	score_pos = (int)ft_strlchr(line, '-');
 	newpath->door1 = ft_strsub(line, 0, score_pos);
 	newpath->door2 = ft_strdup(line + score_pos + 1);
+	free(line);
 	return (newpath);
 }

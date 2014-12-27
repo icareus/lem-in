@@ -6,17 +6,16 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 05:37:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/27 12:49:59 by root             ###   ########.fr       */
+/*   Updated: 2014/12/27 17:33:15 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEMIN_H
 # define LEMIN_H
 
-# define STARTROOM 	0
-# define NORMAL 	1
-# define ENDROOM	2
-# define UNKNOWN	3
+# define STARTROOM 	1
+# define NORMAL 	2
+# define ENDROOM	3
 
 typedef struct		s_init
 {
@@ -32,7 +31,7 @@ typedef struct		s_room
 	int				x;
 	int				y;
 	int				flag;
-	t_list			*doors;
+	t_list			*paths;
 }					t_room;
 
 typedef struct		s_path
@@ -50,7 +49,7 @@ t_room				*get_room_by_name(char *name, t_list *list);
 t_path				*init_path(char *line);
 t_room				*init_room(char *line, int room_flag);
 int					is_command(char *line);
-int					is_path(char *line);
+int					is_path(char *line, t_list *rooms);
 int					is_room(char *line);
 
 #endif
