@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+         #
+#    By: root <root@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/30 05:29:40 by abarbaro          #+#    #+#              #
-#    Updated: 2014/12/25 02:39:26 by lefebvre         ###   ########.fr        #
+#    Updated: 2014/12/27 12:24:56 by root             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = lem-in
 LIBDIR = ./libft/
 LIB = $(LIBDIR)libft.a
 SRCDIR = ./src/
-SRCFIL = $(shell ls includes | grep "\.c")
+SRCFIL = $(shell ls $(SRCDIR) | grep "\.c")
 SRC = $(addprefix $(SRCDIR),$(SRCFIL))
 ODIR = ./OBJECTS/
 SRCO = $(SRCFIL:.c=.o)
