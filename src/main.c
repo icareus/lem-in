@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abarbaro <abarbaro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 05:43:08 by abarbaro         ###   ########.fr       */
+/*   Updated: 2014/12/27 13:04:49 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,28 @@ int		get_ant_number(void)
 
 int		init(t_list **rooms, t_list **paths)
 {
-	t_init		initvars;
+	t_init		vars;
 
-	initvars.rooms_done = 0;
-	while ((initvars.read = get_next_line(0, &initvars.line)))
+	vars.rooms_done = 0;
+	while ((vars.read = get_next_line(0, &vars.line)))
 	{
-		if (initvars.read == -1)
-			ft_memdel((void **)&initvars.line);
-		else if (is_command(initvars.line) != -1)
-			initvars.room_flag = is_command(initvars.line);
-		else if (is_room(initvars.line) && !initvars.rooms_done)
+		if (vars.read == -1)
+			ft_memdel((void **)&vars.line);
+		else
 		{
-			*rooms = ft_lst_push(*rooms, init_room(initvars.line,
-												initvars.room_flag));
-			initvars.room_flag = NORMAL;
+			vars.flag = vars.flag == NORMAL ? is_command(vars.line) : vars.flag;
+			if (is_room(vars.line) && !vars.rooms_done)
+			{
+				*rooms = ft_lst_push(*rooms, init_room(vars.line,
+													vars.flag));
+				vars.flag = NORMAL;
+			}
+			else if (is_path(vars.line) && (vars.rooms_done = 1))
+				*paths = ft_lst_push(*paths, init_path(vars.line));
 		}
-		else if (is_path(initvars.line) && (initvars.rooms_done = 1))
-			*paths = ft_lst_push(*paths, init_path(initvars.line));
-		free(initvars.line);
+		free(vars.line);
 	}
-	free(initvars.line);
+	free(vars.line);
 	return (0);
 }
 

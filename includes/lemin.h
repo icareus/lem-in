@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abarbaro <abarbaro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 05:37:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 04:54:34 by abarbaro         ###   ########.fr       */
+/*   Updated: 2014/12/27 12:49:59 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 typedef struct		s_init
 {
-	int				room_flag;
+	int				flag;
 	int				rooms_done;
 	char			*line;
 	int				read;
@@ -32,6 +32,7 @@ typedef struct		s_room
 	int				x;
 	int				y;
 	int				flag;
+	t_list			*doors;
 }					t_room;
 
 typedef struct		s_path

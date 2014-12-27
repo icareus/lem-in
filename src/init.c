@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abarbaro <abarbaro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 06:09:22 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 04:56:09 by abarbaro         ###   ########.fr       */
+/*   Updated: 2014/12/27 13:02:33 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,12 @@
 
 int		is_command(char *line)
 {
-	if (line[0] == '#' && line[1] == '#')
-	{
-		if (ft_strequ("##start", line))
-			return (STARTROOM);
-		else if (ft_strequ("##end", line))
-			return (ENDROOM);
-		else
-			return (NORMAL);
-	}
+	if (ft_strequ("##start", line))
+		return (STARTROOM);
+	else if (ft_strequ("##end", line))
+		return (ENDROOM);
 	else
-		return (-1);
+		return (NORMAL);
 }
 
 int		is_room(char *line)
