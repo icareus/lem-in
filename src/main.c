@@ -109,7 +109,7 @@ int		main(void)
 	{
 		init(&rooms, &paths);
 		if (!rooms || !paths)
-			destroy_everything(rooms, paths);
+			destroy_everything(rooms, paths, 1);
 		ants = init_ants(antnum, rooms);
 		ft_printf("%d\n", antnum);
 		ft_lst_foreach(rooms, print_room);
@@ -117,7 +117,7 @@ int		main(void)
 		write(1, "\n", 1);
 		drill(rooms, paths);
 		valid_or_die(rooms, paths);
-		game_loop(ants, antnum);
+		game_loop(ants, antnum, rooms, paths);
 	}
 	return (0);
 }

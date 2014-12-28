@@ -35,7 +35,7 @@ void	destroy_path(void *data)
 	data = NULL;
 }
 
-void	destroy_everything(t_list *rooms, t_list *paths)
+void	destroy_everything(t_list *rooms, t_list *paths, int error)
 {
 	if (rooms)
 	{
@@ -47,6 +47,7 @@ void	destroy_everything(t_list *rooms, t_list *paths)
 		ft_lst_foreach(paths, destroy_path);
 		ft_lst_rec_free(paths);
 	}
-	ft_putstr("ERROR");
+	if (error)
+		ft_putstr("ERROR");
 	exit (0);
 }

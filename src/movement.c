@@ -82,6 +82,8 @@ int		game_over(t_ant *ants, int antnum)
 {
 	int		i;
 
+	if (!ants)
+		return (1);
 	i = 0;
 	while (i < antnum)
 	{
@@ -92,7 +94,7 @@ int		game_over(t_ant *ants, int antnum)
 	return (1);
 }
 
-void	game_loop(t_ant *ants, int antnum)
+void	game_loop(t_ant *ants, int antnum, t_list *rooms, t_list *paths)
 {
 	int		turn_ended;
 	int		i;
@@ -117,4 +119,5 @@ void	game_loop(t_ant *ants, int antnum)
 			write(1, "\n", 1);
 		}
 	}
+	destroy_everything(rooms, paths, 0);
 }

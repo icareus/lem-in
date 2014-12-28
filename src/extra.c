@@ -71,5 +71,5 @@ void	valid_or_die(t_list *rooms, t_list *paths)
 	else if (!path_exists(get_room_by_flag(STARTROOM, rooms)))
 		ret = 0;
 	if (!ret)
-		destroy_everything(rooms, paths);
+		destroy_everything(rooms, paths, 1);
 }

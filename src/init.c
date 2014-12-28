@@ -20,6 +20,8 @@ t_room	*init_room(char *line, int room_flag)
 
 	i = 0;
 	newroom = malloc(sizeof(t_room));
+	if (!newroom)
+		return (NULL);
 	while (line[i] != ' ')
 		i++;
 	newroom->flag = room_flag;
@@ -61,6 +63,8 @@ t_ant	*init_ants(int antnum, t_list *rooms)
 
 	i = 0;
 	ants = malloc(sizeof(t_ant) * antnum);
+	if (!ants)
+		return (NULL);
 	while (i < antnum)
 	{
 		ants[i].room = get_room_by_flag(STARTROOM, rooms);

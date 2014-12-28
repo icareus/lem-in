@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: abarbaro <root@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 05:37:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/28 20:14:14 by root             ###   ########.fr       */
+/*   Updated: 2014/12/28 20:14:14 by abarbaro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ typedef struct		s_ant
 	int				did_turn;
 }					t_ant;
 
-void				destroy_everything(t_list *rooms, t_list *paths);
+void				destroy_everything(t_list *rooms, t_list *paths, int error);
 void				drill(t_list *rooms, t_list *paths);
 int					find(void *room, int flag);
-void				game_loop(t_ant *ants, int antnum);
+void				game_loop(t_ant *ants, int antnum, t_list *, t_list *);
 t_room				*get_room_by_name(char *name, t_list *list);
 t_room				*get_room_by_flag(int flag, t_list *list);
 t_ant				*init_ants(int antnum, t_list *rooms);
