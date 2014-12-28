@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 05:37:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/28 19:31:36 by root             ###   ########.fr       */
+/*   Updated: 2014/12/28 20:14:14 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct		s_ant
 	int				did_turn;
 }					t_ant;
 
+void				destroy_everything(t_list *rooms, t_list *paths);
 void				drill(t_list *rooms, t_list *paths);
 int					find(void *room, int flag);
 void				game_loop(t_ant *ants, int antnum);
@@ -65,5 +66,6 @@ void				move(t_ant *ant, t_room *room);
 void				print_room(void *room);
 void				print_room_paths(t_room *room);
 void				reset_ants(t_ant *ants, int antnum);
+void				valid_or_die(t_list *rooms, t_list *paths);
 
 #endif

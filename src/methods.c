@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 05:37:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/28 17:57:52 by root             ###   ########.fr       */
+/*   Updated: 2014/12/28 20:40:40 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,11 @@ void		drill(t_list *rooms, t_list *paths)
 		{
 			path = (t_path *)tmp_p->data;
 			if (ft_strequ(path->door1, room->name))
-			{
 				room->paths = ft_lst_push(room->paths,
 						get_room_by_name(path->door2, rooms));
-			}
 			if (ft_strequ(path->door2, room->name))
-			{
 				room->paths = ft_lst_push(room->paths,
 						get_room_by_name(path->door1, rooms));
-			}
 			tmp_p = tmp_p->next;
 		}
 		tmp_r = tmp_r->next;

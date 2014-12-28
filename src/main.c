@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/28 19:23:17 by root             ###   ########.fr       */
+/*   Updated: 2014/12/28 20:42:12 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,15 @@ int		main(void)
 	else
 	{
 		init(&rooms, &paths);
+		if (!rooms || !paths)
+			destroy_everything(rooms, paths);
 		ants = init_ants(antnum, rooms);
 		ft_printf("%d\n", antnum);
 		ft_lst_foreach(rooms, print_room);
 		ft_lst_foreach(paths, print_path);
 		write(1, "\n", 1);
 		drill(rooms, paths);
+		valid_or_die(rooms, paths);
 		game_loop(ants, antnum);
 	}
 	return (0);
