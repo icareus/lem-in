@@ -53,7 +53,7 @@ typedef struct		s_ant
 void				destroy_everything(t_list *rooms, t_list *paths, int error);
 void				drill(t_list *rooms, t_list *paths);
 int					find(void *room, int flag);
-void				game_loop(t_ant *ants, int antnum, t_list *, t_list *);
+void				game_loop(t_ant *ants, int antnum, t_list *r, t_list *p);
 t_room				*get_room_by_name(char *name, t_list *list);
 t_room				*get_room_by_flag(int flag, t_list *list);
 t_ant				*init_ants(int antnum, t_list *rooms);
