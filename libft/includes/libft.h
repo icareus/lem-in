@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lefebvre <lefebvre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/27 01:46:16 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/25 05:27:12 by lefebvre         ###   ########.fr       */
+/*   Updated: 2014/12/28 12:21:47 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
 void				ft_lst_foreach(t_list *first, void (*f)());
+void				*ft_lst_get_index_data(t_list *first, int i);
 t_list				*ft_lst_push(t_list *first, void *data);
 void				ft_lst_rec_free(t_list *first);
 int					ft_toupper(int c);

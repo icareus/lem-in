@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 05:37:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/28 12:59:29 by root             ###   ########.fr       */
+/*   Updated: 2014/12/28 13:09:08 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,14 @@ void	print_room_paths(t_room *room)
 int		test_pathfinding(void *room)
 {
 	t_room		*current;
-	t_room		*bestnext;
+	// t_room		*bestnext;
 	t_list		*testing;
 	int			smallestpath;
 	int			lastpath;
 int	i = 0;
+int i2 = 0;
 
-	bestnext = NULL;
+	// bestnext = NULL;
 	current = (t_room *)room;
 	if (current->busy)
 		return (-1);
@@ -117,7 +118,8 @@ int	i = 0;
 														&& lastpath != -1)
 		{
 			smallestpath = 1 + lastpath;
-			bestnext = (t_room *)testing->data;
+i2 = i;
+			// bestnext = (t_room *)testing->data;
 		}
 		testing = testing->next;
 i++;
@@ -125,7 +127,7 @@ i++;
 	current->busy = 0;
 ft_printf("In %s, next optimum step with %i jumps is :",
 			current->name, smallestpath);
-print_room(bestnext);
+print_room(ft_lst_get_index_data(current->paths , i2));
 	if (smallestpath == 2147483647)
 		return (-1);
 	else
