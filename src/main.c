@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/28 12:58:28 by root             ###   ########.fr       */
+/*   Updated: 2014/12/28 17:54:31 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,13 @@ int		init(t_list **rooms, t_list **paths)
 			*rooms = ft_lst_push(*rooms, init_room(vars.line, vars.flag));
 			vars.flag = NORMAL;
 		}
-		else if (is_path(vars.line, *rooms) && (vars.rooms_done = 1))
+		else if (is_path(vars.line, *rooms) && (vars.rooms_done = 1))	
 			*paths = ft_lst_push(*paths, init_path(vars.line));
 		else
 			break ;
 	}
 	free(vars.line);
+	write(1, "\n", 1);
 	return (0);
 }
 
@@ -90,6 +91,7 @@ int		main(void)
 	t_list		*rooms;
 	t_list		*paths;
 	int			antnum;
+	t_ant		*ants;
 
 	rooms = NULL;
 	paths = NULL;
@@ -99,12 +101,12 @@ int		main(void)
 	else
 	{
 		init(&rooms, &paths);
+		ants = init_ants(antnum, rooms);
 		ft_printf("%d\n", antnum);
 		ft_lst_foreach(rooms, print_room);
 		ft_lst_foreach(paths, print_path);
 		drill(rooms, paths);
-		ft_lst_foreach(rooms, print_room_paths);
-test_pathfinding(get_room_by_flag(STARTROOM, rooms));
+		game_loop(ants, antnum);
 	}
 	return (0);
 }
