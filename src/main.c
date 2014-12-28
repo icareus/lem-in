@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/28 20:42:12 by root             ###   ########.fr       */
+/*   Updated: 2014/12/28 21:08:21 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		init(t_list **rooms, t_list **paths)
 			*rooms = ft_lst_push(*rooms, init_room(vars.line, vars.flag));
 			vars.flag = NORMAL;
 		}
-		else if (is_path(vars.line, *rooms) && (vars.rooms_done = 1))	
+		else if (is_path(vars.line, *rooms) && (vars.rooms_done = 1))
 			*paths = ft_lst_push(*paths, init_path(vars.line));
 		else
 			break ;

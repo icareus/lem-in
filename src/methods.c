@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 05:37:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/28 20:40:40 by root             ###   ########.fr       */
+/*   Updated: 2014/12/28 21:08:20 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void		drill(t_list *rooms, t_list *paths)
 	}
 }
 
-void	print_room_paths(t_room *room)
+void		print_room_paths(t_room *room)
 {
 	t_list		*ls;
 	t_room		*ptr;
@@ -89,7 +89,7 @@ void	print_room_paths(t_room *room)
 	}
 }
 
-int		find(void *room, int targetflag)
+int			find(void *room, int targetflag)
 {
 	t_room		*current;
 	t_list		*testing;

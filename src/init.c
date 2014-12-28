@@ -6,13 +6,12 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 06:09:22 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/28 19:31:57 by root             ###   ########.fr       */
+/*   Updated: 2014/12/28 21:08:23 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include "lemin.h"
-
 
 t_room	*init_room(char *line, int room_flag)
 {
