@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 06:09:22 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/28 17:45:20 by root             ###   ########.fr       */
+/*   Updated: 2014/12/28 19:31:57 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_ant	*init_ants(int antnum, t_list *rooms)
 	{
 		ants[i].room = get_room_by_flag(STARTROOM, rooms);
 		ants[i].did_turn = 0;
+		ants[i].id = i + 1;
 		i++;
 	}
 	return (ants);

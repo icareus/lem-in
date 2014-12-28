@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/28 17:54:31 by root             ###   ########.fr       */
+/*   Updated: 2014/12/28 19:23:17 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int		init(t_list **rooms, t_list **paths)
 			break ;
 	}
 	free(vars.line);
-	write(1, "\n", 1);
 	return (0);
 }
 
@@ -105,6 +104,7 @@ int		main(void)
 		ft_printf("%d\n", antnum);
 		ft_lst_foreach(rooms, print_room);
 		ft_lst_foreach(paths, print_path);
+		write(1, "\n", 1);
 		drill(rooms, paths);
 		game_loop(ants, antnum);
 	}

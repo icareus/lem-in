@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 05:37:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/28 17:12:52 by root             ###   ########.fr       */
+/*   Updated: 2014/12/28 19:31:36 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct		s_path
 
 typedef struct		s_ant
 {
+	int				id;
 	t_room			*room;
 	t_room			*last;
 	int				did_turn;
