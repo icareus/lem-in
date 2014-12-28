@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/28 21:08:21 by root             ###   ########.fr       */
+/*   Updated: 2014/12/28 21:17:11 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@ int		get_ant_number(void)
 	{
 		ft_memdel((void **)&line);
 		return (0);
+	}
+	while (*line == '#')
+	{
+		free (line);
+		read = get_next_line(0, &line);
+		if (read == -1)
+		{
+			ft_memdel((void **)&line);
+			return (0);
+		}
 	}
 	ant_number = atoi(line);
 	if (!ant_number)
