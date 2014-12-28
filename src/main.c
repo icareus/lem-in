@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/10/09 06:29:45 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/27 16:29:54 by root             ###   ########.fr       */
+/*   Updated: 2014/12/28 12:58:28 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ void	print_room(void *room)
 {
 	t_room		*tmp;
 
+	if (!room)
+	{
+		write(1, "\n", 1);
+		return ;
+	}
 	tmp = (t_room *)room;
 	if (tmp->flag == STARTROOM)
 		ft_printf("##start\n");
@@ -70,8 +75,6 @@ void	print_room(void *room)
 		ft_printf("##end\n");
 	ft_printf("%s %d %d\n", tmp->name,
 							tmp->x, tmp->y);
-	free(tmp->name);
-	free(tmp);
 }
 
 void	print_path(void *tunnel)
@@ -80,10 +83,6 @@ void	print_path(void *tunnel)
 
 	path = (t_path *)tunnel;
 	ft_printf("%s-%s\n", path->door1, path->door2);
-	free(path->door1);
-	path->door1 = NULL;
-	free(path->door2);
-	path->door2 = NULL;
 }
 
 int		main(void)
@@ -103,6 +102,9 @@ int		main(void)
 		ft_printf("%d\n", antnum);
 		ft_lst_foreach(rooms, print_room);
 		ft_lst_foreach(paths, print_path);
+		drill(rooms, paths);
+		ft_lst_foreach(rooms, print_room_paths);
+test_pathfinding(get_room_by_flag(STARTROOM, rooms));
 	}
 	return (0);
 }

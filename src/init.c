@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/20 06:09:22 by abarbaro          #+#    #+#             */
-/*   Updated: 2014/12/27 16:20:56 by root             ###   ########.fr       */
+/*   Updated: 2014/12/28 12:24:42 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ t_room	*init_room(char *line, int room_flag)
 	while (line[i] == ' ')
 		i++;
 	newroom->y = ft_atoi(line + i);
+	newroom->paths = NULL;
+	newroom->busy = 0;
 	free(line);
 	return (newroom);
 }
