@@ -1,0 +1,92 @@
+#!/usr/local/bin/node
+
+var log = console.log;
+
+// stdin reading
+var		readline = require('readline');
+var		rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout,
+	terminal: false,
+});
+var		lines = [];
+
+// init
+var		anthill = {
+	ants: [],
+	rooms: [],
+	paths: [],
+	turns: [],
+};
+var reAntNum = /^[0-9+]$/;
+var reRoom = /^(\w) (-?[0-9]+) (-?[0-9]+)$/;
+var rePath = /^(\w)-(\w)$/;
+var reMove = /L(\w+)-(\w+)[ $]?/g;
+
+var ant = function(num) {
+	this.num = num;
+}
+
+var room = function(name, x, y, flag) {
+	this.name = name;
+	this.x = x;
+	this.y = y;
+	this.flag = flag;
+}
+
+// parsing
+rl.on('line', function(line) {
+	lines.push(line);
+	// room flag
+	if (line === '##start' || line === '##end') {
+		this.flag = line;
+		//ants
+	} else if (line.match(reAntNum)) {
+		for (var i = parseInt(line); i > 0; i--) {
+			anthill.ants.push(new ant(anthill.ants.length + 1));
+		}
+		// rooms
+	} else if (this.match = line.match(reRoom)) {
+		anthill.rooms[this.match[1]] = new room(
+			this.match[1],
+			parseInt(this.match[2]),
+			parseInt(this.match[3]),
+			this.flag);
+		this.flag = null;
+		// paths
+	} else if (this.match = line.match(rePath)) {
+		anthill.paths.push([this.match[1], this.match[2]]);
+	} else if (this.match = line.match(reMove)) {
+		anthill.turns.push(line.trim().split(' '));
+	}
+});
+
+rl.on('close', function(){
+	log(anthill);
+	anthill = JSON.stringify(anthill);
+});
+
+// web part
+const	http = require('http');
+var		fs = require('fs');
+var		html = './src/visu.html';
+var		js = './src/visu.js';
+
+http.createServer( (req, res) => {
+	res.writeHead(200, {'Content-Type': 'text/html'});
+	res.write(fs.readFileSync(html));
+	res.end(
+		'<script>'
+		+ 'var anthill = ' + anthill + ';\n'
+		+ fs.readFileSync(js) +
+		'</script>');
+}).listen(8124);
+
+// open browser at address
+// var		sys = require('sys');
+var		exec = require('child_process').exec;
+// function puts(error, stdout, stderr) { sys.puts(stdout) }
+// exec("ls -la", puts);
+
+log('Server running, spawning browser to visualize...');
+exec("open http://localhost:8124");
